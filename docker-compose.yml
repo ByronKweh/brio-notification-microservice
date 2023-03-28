@@ -12,17 +12,21 @@ services:
       - db:/data/db
   backend:
     image: notificationbackend
+    volumes:
+      - .:/usr/src/app
     environment:
       - DB_HOST=db
       - DB_PORT=27017
     build:
       context: .
-      dockerfile: Dockerfile
+      # dockerfile: Dockerfile
+      target: development
     ports:
       - 3001:3000
     depends_on:
       - db
-    restart: unless-stopped
+    command: npm run start:debug
+    # restart: always
 networks:
   webnet:
 volumes:
