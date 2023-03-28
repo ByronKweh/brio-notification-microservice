@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  db:
+    image: mongo
+    restart: always
+    environment:
+      MONGODB_USER: root
+      MONGODB_DATABASE: notification
+      MONGODB_PASS: password
+    volumes:
+      - db:/data/db
+  backend:
+    image: notificationbackend
+    environment:
+      - DB_HOST=db
+      - DB_PORT=27017
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3000
+    depends_on:
+      - db
+    restart: unless-stopped
+networks:
+  webnet:
+volumes:
+  db:
