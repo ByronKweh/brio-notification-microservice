@@ -1,6 +1,6 @@
-import { Connection } from 'mongoose';
+import mongoose, { Connection } from 'mongoose';
 import { DATABASE_CONNECTION, NOTIFICATION_MODEL } from 'src/utils';
-import { NotificationSchema } from '../notification.schema';
+import { NotificationSchema } from '../schemas/notification.schema';
 
 export const notificationProviders = [
   {
