@@ -17,7 +17,5 @@ import { DB_URI } from './utils';
   providers: [AppService],
 })
 export class AppModule {
-  constructor() {
-    console.log('hehe');
-  }
+  constructor() {}
 }

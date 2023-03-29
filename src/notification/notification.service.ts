@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
-import { NOTIFICATION_MODEL } from 'src/utils';
+import { NOTIFICATION_MODEL } from './shared_constants';
 
 @Injectable()
 export class NotificationService {
@@ -18,6 +18,6 @@ export class NotificationService {
   }
 
   async getAll() {
-    return await this.notificationModel.find();
+return await this.notificationModel.find();
   }
 }

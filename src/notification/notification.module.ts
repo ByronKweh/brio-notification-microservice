@@ -8,6 +8,7 @@ import { notificationProviders } from './providers/notification.providers';
 import { UiNotificationServiceService } from './ui-notification-service/ui-notification-service.service';
 import { SeedingFactoryService } from './seeding-factory/seeding-factory.service';
 import { EmailNotificationService } from './email-notification/email-notification.service';
+import { ExternalMicroserviceInterfaceService } from './external-microservice-interface/external-microservice-interface.service';
 
 @Module({
   imports: [],
@@ -19,6 +20,7 @@ import { EmailNotificationService } from './email-notification/email-notificatio
     UiNotificationServiceService,
     SeedingFactoryService,
     EmailNotificationService,
+    ExternalMicroserviceInterfaceService,
   ],
   exports: [...databaseProviders],
 })

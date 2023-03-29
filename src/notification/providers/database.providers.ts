@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { DB_URI } from 'src/utils';
+import { DB_URI } from '../../utils';
 
 export const databaseProviders = [
   {
