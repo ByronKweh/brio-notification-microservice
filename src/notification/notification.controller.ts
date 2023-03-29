@@ -34,6 +34,6 @@ export class NotificationController {
   async createNotificationForUser(
     @Body() request_body: CreateNotificationEntity,
   ) {
-    return 'OK';
+    return await this.notificationService.createNotification(request_body);
   }
 }
