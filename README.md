@@ -64,3 +64,4 @@ Nest is [MIT licensed](LICENSE).
 3. Implement API versioning - A proper API should have API versioning
 4. Nest notification schema in a user schema - The current MongoDB structure for notifications is a flat structure but it would be improved if it was nested under a user object
 5. Prod logic for docker - Docker production build is not tested
+6. Code is lacking end-to-end tests - To test expected business behaviour
