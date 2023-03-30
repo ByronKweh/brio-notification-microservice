@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 export interface UserResponseDTO {
   first_name: string;
   is_subscribed: boolean;
+  email: string;
 }
 
 export interface CompanyResponseDTO {
@@ -13,10 +14,11 @@ export interface CompanyResponseDTO {
 @Injectable()
 export class ExternalMicroserviceInterfaceService {
   async getUserById(user_id: number): Promise<UserResponseDTO> {
-    //pretend an GRPC / TCP call was made here
+    //pretend an GRPC / HTTP call was made here
     const result = {
       first_name: 'Nabil',
       is_subscribed: true,
+      email: 'Nabil@briohr.com',
     };
     return result;
   }

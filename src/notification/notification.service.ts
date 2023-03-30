@@ -7,6 +7,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Model } from 'mongoose';
+import { EmailChannelService } from './email-channel/email-channel.service';
 import {
   CompanyResponseDTO,
   ExternalMicroserviceInterfaceService,
@@ -21,6 +22,7 @@ import {
 } from './notification-strategies';
 import { CreateNotificationEntity } from './notification.controller';
 import { NOTIFICATION_MODEL, NOTIFICATION_TYPE } from './shared_constants';
+import { UiChannelService } from './ui-channel/ui-channel.service';
 
 export interface CreateNoficationResponseDTO {
   status: status;
@@ -43,17 +45,23 @@ export class NotificationService {
   private readonly strategies: Map<string, NotificationStrategy>;
   // Notification strategy layer
   constructor(
-    @Inject(NOTIFICATION_MODEL)
-    private notificationModel: Model<Notification>,
     private externalMicroserviceInterface: ExternalMicroserviceInterfaceService,
+    private readonly uiChannelService: UiChannelService,
+    private readonly emailChannelService: EmailChannelService,
   ) {
     this.strategies = new Map<string, NotificationStrategy>([
-      [NOTIFICATION_TYPE.HAPPY_BIRTHDAY, new HappyBirthdayStrategy()],
+      [
+        NOTIFICATION_TYPE.HAPPY_BIRTHDAY,
+        new HappyBirthdayStrategy(uiChannelService, emailChannelService),
+      ],
       [
         NOTIFICATION_TYPE.LEAVE_BALANCE_REMINDER,
-        new LeaveBalanceReminderStrategy(),
+        new LeaveBalanceReminderStrategy(uiChannelService),
       ],
-      [NOTIFICATION_TYPE.MONTHLY_PAYSLIP, new MonthlyPayslipStrategy()],
+      [
+        NOTIFICATION_TYPE.MONTHLY_PAYSLIP,
+        new MonthlyPayslipStrategy(emailChannelService),
+      ],
     ]);
   }
 
@@ -109,6 +117,7 @@ export class NotificationService {
       first_name: user.first_name,
       user_id: request_data.user_id,
       company_name: company.company_name,
+      user_email: user.email,
     });
   }
 }

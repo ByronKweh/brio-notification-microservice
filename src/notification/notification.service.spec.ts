@@ -1,10 +1,12 @@
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import { EmailChannelService } from './email-channel/email-channel.service';
 import { ExternalMicroserviceInterfaceService } from './external-microservice-interface/external-microservice-interface.service';
 import { MicroserviceException } from './microservice.exception';
 import { NotificationService } from './notification.service';
 import { notificationProviders } from './providers/notification.providers';
 import { NOTIFICATION_MODEL, NOTIFICATION_TYPE } from './shared_constants';
+import { UiChannelService } from './ui-channel/ui-channel.service';
 
 describe('NotificationService', () => {
   let service: NotificationService;
@@ -16,6 +18,8 @@ describe('NotificationService', () => {
         NotificationService,
         ExternalMicroserviceInterfaceService,
         { provide: NOTIFICATION_MODEL, useValue: jest.fn() },
+        EmailChannelService,
+        UiChannelService,
       ],
     }).compile();
 
@@ -25,26 +29,32 @@ describe('NotificationService', () => {
     );
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  describe('standard defined test', () => {
+    it('should be defined', () => {
+      expect(service).toBeDefined();
+    });
   });
 
-  it('should throw if user_id does not exist', () => {
-    jest.spyOn(external_microservice, 'getUserById').mockImplementation(() => {
-      throw new NotFoundException('user not found');
-    });
+  describe('standard defined test', () => {
+    it('should throw if user_id does not exist', () => {
+      jest
+        .spyOn(external_microservice, 'getUserById')
+        .mockImplementation(() => {
+          throw new NotFoundException('user not found');
+        });
 
-    const payload = {
-      user_id: 2,
-      company_id: 1,
-      notification_type: NOTIFICATION_TYPE.HAPPY_BIRTHDAY,
-    };
-    const createNotification = () => {
-      return service.createNotification(payload);
-    };
-    expect(createNotification).rejects.toThrowError(
-      new MicroserviceException(),
-    );
+      const payload = {
+        user_id: 2,
+        company_id: 1,
+        notification_type: NOTIFICATION_TYPE.HAPPY_BIRTHDAY,
+      };
+      const createNotification = () => {
+        return service.createNotification(payload);
+      };
+      expect(createNotification).rejects.toThrowError(
+        new MicroserviceException(),
+      );
+    });
   });
 
   it('should throw if company_id does not exist', () => {
