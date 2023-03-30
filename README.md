@@ -45,13 +45,13 @@ $ npm run test
 
 ## Postman
 
-### Ensure postman is installed (https://www.postman.com/downloads/)
+- Ensure postman is installed (https://www.postman.com/downloads/)
 
-### get the raw file (http://localhost:3001/docs-json)
+- get the raw file (http://localhost:3001/docs-json)
 
-### Import the raw file into postman based on the guide here (https://learning.postman.com/docs/getting-started/importing-and-exporting-data/)
+- Import the raw file into postman based on the guide here (https://learning.postman.com/docs/getting-started/importing-and-exporting-data/)
 
-### Set the baseUrl to "localhost:3001" based on the guide here (https://learning.postman.com/docs/sending-requests/variables/)
+- Set the baseUrl to "localhost:3001" based on the guide here (https://learning.postman.com/docs/sending-requests/variables/)
 
 ## Support
 
