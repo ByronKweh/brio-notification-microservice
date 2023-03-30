@@ -10,9 +10,16 @@ This is a sample NESTJS project where the NESTJS Application is Dockerized with 
 ## Prerequisites
 
 1. Docker
+
    [Install docker here] (https://docs.docker.com/engine/install/)
+
 2. Nvm (we are using version 16)
-   $nvm use 16
+
+$ nvm use 16
+
+3. Npm
+
+   [Install NPM based on this guide] https://radixweb.com/blog/installing-npm-and-nodejs-on-windows-and-mac
 
 ## Installation
 
