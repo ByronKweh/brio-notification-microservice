@@ -15,7 +15,9 @@ This is a sample NESTJS project where the NESTJS Application is Dockerized with 
 
 2. Nvm (we are using version 16)
 
+```bash
 $ nvm use 16
+```
 
 3. Npm
 
