@@ -60,7 +60,7 @@ export class NotificationController {
 
   @Get('get-notifications-for-user/:user_id')
   async getNotificationsForUser(
-    @Param('user_id', ParseIntPipe) user_id: number,
+    @Param('user_id', ParseIntPipe) user_id: number, //todo swagger still thinks this can be a number with decimal?
   ): Promise<Array<Notification>> {
     return await this.uiChannel.listAllUINotificationsForUser(user_id);
   }

@@ -68,7 +68,7 @@ export class NotificationService {
   async createNotification(
     request_data: CreateNotificationEntity,
   ): Promise<CreateNoficationResponseDTO> {
-    // todo probably can outsource the company and user_id check since it could be reused by other notification creation APIs (maybe)
+    // todo probably can outsource the company and user_id check since it could be reused by other notification creation APIs (maybe) by making the function getSubscribedUser or something
     // check that company exists
     let company: undefined | CompanyResponseDTO;
     try {
