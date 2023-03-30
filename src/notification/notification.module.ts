@@ -5,10 +5,9 @@ import { NotificationController } from './notification.controller';
 import { NotificationService } from './notification.service';
 import { databaseProviders } from './providers/database.providers';
 import { notificationProviders } from './providers/notification.providers';
-import { UiNotificationServiceService } from './ui-notification-service/ui-notification-service.service';
-import { SeedingFactoryService } from './seeding-factory/seeding-factory.service';
-import { EmailNotificationService } from './email-notification/email-notification.service';
 import { ExternalMicroserviceInterfaceService } from './external-microservice-interface/external-microservice-interface.service';
+import { UiChannelService } from './ui-channel/ui-channel.service';
+import { EmailChannelService } from './email-channel/email-channel.service';
 
 @Module({
   imports: [],
@@ -17,10 +16,9 @@ import { ExternalMicroserviceInterfaceService } from './external-microservice-in
     NotificationService,
     ...notificationProviders,
     ...databaseProviders,
-    UiNotificationServiceService,
-    SeedingFactoryService,
-    EmailNotificationService,
     ExternalMicroserviceInterfaceService,
+    UiChannelService,
+    EmailChannelService,
   ],
   exports: [...databaseProviders],
 })

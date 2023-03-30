@@ -1,6 +1,7 @@
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { ExternalMicroserviceInterfaceService } from './external-microservice-interface/external-microservice-interface.service';
+import { MicroserviceException } from './microservice.exception';
 import { NotificationService } from './notification.service';
 import { notificationProviders } from './providers/notification.providers';
 import { NOTIFICATION_MODEL, NOTIFICATION_TYPE } from './shared_constants';
@@ -29,9 +30,9 @@ describe('NotificationService', () => {
   });
 
   it('should throw if user_id does not exist', () => {
-    jest
-      .spyOn(external_microservice, 'getUserById')
-      .mockResolvedValue(undefined);
+    jest.spyOn(external_microservice, 'getUserById').mockImplementation(() => {
+      throw new NotFoundException('user not found');
+    });
 
     const payload = {
       user_id: 2,
@@ -42,14 +43,16 @@ describe('NotificationService', () => {
       return service.createNotification(payload);
     };
     expect(createNotification).rejects.toThrowError(
-      `[create-notification] User not found, user_id:${payload.user_id}`,
+      new MicroserviceException(),
     );
   });
 
   it('should throw if company_id does not exist', () => {
     jest
       .spyOn(external_microservice, 'getCompanyById')
-      .mockResolvedValue(undefined);
+      .mockImplementation(() => {
+        throw new NotFoundException('company not found');
+      });
 
     const payload = {
       user_id: 2,
@@ -60,7 +63,7 @@ describe('NotificationService', () => {
       return service.createNotification(payload);
     };
     expect(createNotification).rejects.toThrowError(
-      `[create-notification] Company not found, company_id:${payload.company_id}`,
+      new MicroserviceException(),
     );
   });
 

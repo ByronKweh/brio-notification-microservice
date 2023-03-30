@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 
-interface UserResponseDTO {
+export interface UserResponseDTO {
   first_name: string;
   is_subscribed: boolean;
 }
 
-interface CompanyResponseDTO {
+export interface CompanyResponseDTO {
   company_name: string;
   is_subscribed: boolean;
 }
