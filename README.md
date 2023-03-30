@@ -31,7 +31,9 @@ $ npm install
 
 ## Running the app
 
+```bash
 $ docker-compose up
+```
 
 The docker-compose is already configured to run nestjs in watch-mode so you can save and the nestjs will rebuild everytime for development purposes
 

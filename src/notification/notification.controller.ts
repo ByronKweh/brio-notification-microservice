@@ -20,11 +20,11 @@ import { UiChannelService } from './ui-channel/ui-channel.service';
 export class CreateNotificationEntity {
   @ApiProperty()
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumber({ maxDecimalPlaces: 0 })
   user_id: number;
   @ApiProperty()
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumber({ maxDecimalPlaces: 0 })
   company_id: number;
   @ApiProperty()
   @IsNotEmpty()
