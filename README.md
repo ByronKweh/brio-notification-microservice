@@ -2,6 +2,7 @@
 
   <p align="center"> Notification API in NestJs with Mongoose (with strategy design pattern and unit tests)
 </p>
+
 ## Description
 
 This is a sample NESTJS project where the NESTJS Application is Dockerized with a local dockerized MongoDB. It uses a notification module with notification strategies based on the notification type. It also uses mocking in all jest tests for every file.
@@ -39,7 +40,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://github.com/ByronKweh/)
+- Author - [Byron Kweh](https://github.com/ByronKweh/)
 - Website - [https://nestjs.com](https://nestjs.com/)
 - Twitter - [@nestframework](https://twitter.com/nestframework)
 
