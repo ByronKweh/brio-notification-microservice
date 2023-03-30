@@ -43,6 +43,16 @@ $ npm run test
 
 ```
 
+## Postman
+
+# Ensure postman is installed (https://www.postman.com/downloads/)
+
+# get the raw file (http://localhost:3001/docs-json)
+
+# Import the raw file into postman based on the guide here (https://learning.postman.com/docs/getting-started/importing-and-exporting-data/)
+
+# Set the baseUrl to "localhost:3001" based on the guide here (https://learning.postman.com/docs/sending-requests/variables/)
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
@@ -65,3 +75,4 @@ Nest is [MIT licensed](LICENSE).
 4. Nest notification schema in a user schema - The current MongoDB structure for notifications is a flat structure but it would be improved if it was nested under a user object
 5. Prod logic for docker - Docker production build is not tested
 6. Code is lacking end-to-end tests - To test expected business behaviour
+7. Dynamic postman collection is not accurate to the actual implementation (e.g. number becomes float in the example)

@@ -31,12 +31,12 @@ export interface CreateNoficationResponseDTO {
 
 //todo type narrowing
 
-enum failure_reasons {
+export enum failure_reasons {
   COMPANY_UNSUBSCRIBED = 'COMPANY_UNSUBSCRIBED',
   USER_UNSUBSCRIBED = 'USER_UNSUBSCRIBED',
 }
 
-enum status {
+export enum status {
   NOTIFICATION_SENT = 'NOTIFICATION_SENT',
   NOT_ALLOWED = 'NOT_ALLOWED',
 }
@@ -119,5 +119,10 @@ export class NotificationService {
       company_name: company.company_name,
       user_email: user.email,
     });
+
+    return {
+      status: status.NOTIFICATION_SENT,
+      reason: undefined,
+    };
   }
 }

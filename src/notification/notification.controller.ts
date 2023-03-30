@@ -6,24 +6,40 @@ import {
   ParseIntPipe,
   Post,
 } from '@nestjs/common';
+import { ApiProperty, ApiResponse } from '@nestjs/swagger';
 import { IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import {
   CreateNoficationResponseDTO,
+  failure_reasons,
   NotificationService,
+  status,
 } from './notification.service';
 import { NOTIFICATION_TYPE } from './shared_constants';
 import { UiChannelService } from './ui-channel/ui-channel.service';
 
 export class CreateNotificationEntity {
+  @ApiProperty()
   @IsNotEmpty()
   @IsNumber()
   user_id: number;
+  @ApiProperty()
   @IsNotEmpty()
   @IsNumber()
   company_id: number;
+  @ApiProperty()
   @IsNotEmpty()
   @IsEnum(NOTIFICATION_TYPE)
   notification_type: NOTIFICATION_TYPE;
+}
+
+class CreateNotificationResponseEntity {
+  @ApiProperty()
+  @IsEnum(status)
+  status: status;
+
+  @ApiProperty()
+  @IsEnum(failure_reasons)
+  reason: failure_reasons;
 }
 
 @Controller('notification')
@@ -35,6 +51,7 @@ export class NotificationController {
 
   //todo should protect with a jwt and a intercepter to call a jwt microservice
   @Post('create-notification')
+  @ApiResponse({ status: 201, type: CreateNotificationResponseEntity })
   async createNotificationForUser(
     @Body() request_body: CreateNotificationEntity,
   ): Promise<CreateNoficationResponseDTO> {
